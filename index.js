@@ -6,9 +6,9 @@ const port = 3030
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
-    res.header('Access-Control-Allow-Headers',
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization')
     next()
    })
@@ -19,12 +19,10 @@ app.get('/shows', (req, res) => res.send(TVShowArr))
 
 app.post('/shows', (req, res) => {
     TVShowArr.push(req.body)
-    console.log(req.body)
     res.send(TVShowArr)
 })
 
 app.put('/shows', (req, res) => {
-    console.log(req.body)
     res.send(`App Put -- ${req.body.TVShow}`)
 })
 
